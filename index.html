@@ -102,21 +102,23 @@ https://example.com:8443" disabled></textarea>
 
   <!-- Logo -->
   <img class="logo" src="logoLong.png" alt="Fluxaryx Logo" <select id="protocol" disabled>
-    <optgroup label="Basic">
-      <option>TCP</option>
-      <option>HTTP</option>
-      <option>HTTPS</option>
-      <option>ICMP (Ping)</option>
-      <option>UDP</option>
-    </optgroup>
-    <optgroup label="Services">
-      <option>SSH</option>
-      <option>SFTP</option>
-      <option>RDP</option>
-      <option>FTP</option>
-      <option>SQL</option>
-    </optgroup>
-  </select>
+        <label for="protocol">Protocol</label>
+        <select id="protocol" disabled>
+          <optgroup label="Basic">
+            <option>TCP</option>
+            <option>HTTP</option>
+            <option>HTTPS</option>
+            <option>ICMP (Ping)</option>
+            <option>UDP</option>
+          </optgroup>
+          <optgroup label="Services">
+            <option>SSH</option>
+            <option>SFTP</option>
+            <option>RDP</option>
+            <option>FTP</option>
+            <option>SQL</option>
+          </optgroup>
+        </select>
 
   <label for="port">Port</label>
   <input id="port" placeholder="e.g. 80" disabled />
