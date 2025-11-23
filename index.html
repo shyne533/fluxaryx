@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fluxaryx Network Tester — Mock UI</title>
+  <title>Fluxaryx - The Net Flow Intelligence</title>
   <style>
     :root {
       --bg: #f6f8fa;
@@ -15,7 +15,7 @@
       --accent: #0969da;
       --success: LimeGreen;
       --error: IndianRed;
-      --progress: #2ea043; /* matches XAML */
+      --progress: #2ea043;
     }
     * { box-sizing: border-box; }
     body {
@@ -35,12 +35,30 @@
     .group { border: 1px solid var(--border); border-radius: 8px; background: var(--panel); margin-bottom: 12px; }
     .group > h2 { font-size: 14px; color: var(--muted); margin: 0; padding: 8px 12px; border-bottom: 1px solid var(--border); letter-spacing: 0.2px; }
 
-    /* Form grid (mimics WPF Grid with 3 columns) */
-    .form { display: grid; grid-template-columns: 120px 1fr auto; gap: 8px 12px; padding: 12px; align-items: start; }
-    label { font-weight: 600; align-self: center; }
+    /* Form grid: 3 columns (label | field | optional logo) */
+    .form {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 8px 12px;
+      padding: 12px;
+      align-items: start;
+    }
+    /* Force placement: labels always in col 1, fields in col 2 */
+    .form > label { grid-column: 1; font-weight: 600; align-self: center; }
+    .form > input,
+    .form > textarea,
+    .form > select { grid-column: 2; border: 1px solid var(--border); border-radius: 6px; padding: 8px; width: 100%; background: #fff; }
+
+    /* Logo pinned to column 3, first row */
+    .logo {
+      grid-column: 3;
+      grid-row: 1;
+      height: 54px;
+      justify-self: end;
+      align-self: start;
+    }
+
     textarea { min-height: 80px; resize: vertical; }
-    input, textarea, select { border: 1px solid var(--border); border-radius: 6px; padding: 8px; width: 100%; background: #fff; }
-    .logo { height: 54px; justify-self: end; align-self: start; }
 
     /* Action buttons */
     .actions { display: flex; gap: 8px; padding: 4px; }
@@ -64,6 +82,10 @@
     @media (max-width: 720px) {
       .form { grid-template-columns: 1fr; }
       .logo { display: none; }
+      .form > label,
+      .form > input,
+      .form > textarea,
+      .form > select { grid-column: 1; }
     }
   </style>
 </head>
@@ -81,7 +103,7 @@
 example.com
 https://example.com:8443" disabled></textarea>
 
-        <!-- Logo (replace with your file name or remove if not needed) -->
+        <!-- Logo (replace src with your file path or remove entirely) -->
         logoLong.png
 
         <label for="protocol">Protocol</label>
@@ -161,7 +183,7 @@ https://example.com:8443" disabled></textarea>
     </div>
 
     <!-- Footer -->
-    <div class="footer">© 2025 Fluxaryx — Mock UI</div>
+    <div class="footer">© Alexander Syrota</div>
   </div>
 
   <!-- Bottom status bar -->
