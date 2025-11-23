@@ -91,45 +91,43 @@
     <!-- Connection Details -->
     <div class="group">
       <h2>Connection Details</h2>
-      <div class="form">
-        <label for="targets">IP/Host</label>
-        <textarea id="targets" placeholder="e.g. 192.168.1.1
+
+<div class="form">
+  <label for="targets">IP/Host</label>
+  <textarea id="targets" placeholder="e.g. 192.168.1.1
 10.0.0.5–25
 10.0.0.0/29
 example.com
 https://example.com:8443" disabled></textarea>
 
-        <!-- Logo -->
-        logoLong.png
+  <!-- Logo -->
+  <img class="logo" src="logoLong.png" alt="Fluxaryx Logo" <select id="protocol" disabled>
+    <optgroup label="Basic">
+      <option>TCP</option>
+      <option>HTTP</option>
+      <option>HTTPS</option>
+      <option>ICMP (Ping)</option>
+      <option>UDP</option>
+    </optgroup>
+    <optgroup label="Services">
+      <option>SSH</option>
+      <option>SFTP</option>
+      <option>RDP</option>
+      <option>FTP</option>
+      <option>SQL</option>
+    </optgroup>
+  </select>
 
-        <label for="protocol">Protocol</label>
-        <select id="protocol" disabled>
-          <optgroup label="Basic">
-            <option>TCP</option>
-            <option>HTTP</option>
-            <option>HTTPS</option>
-            <option>ICMP (Ping)</option>
-            <option>UDP</option>
-          </optgroup>
-          <optgroup label="Services">
-            <option>SSH</option>
-            <option>SFTP</option>
-            <option>RDP</option>
-            <option>FTP</option>
-            <option>SQL</option>
-          </optgroup>
-        </select>
+  <label for="port">Port</label>
+  <input id="port" placeholder="e.g. 80" disabled />
 
-        <label for="port">Port</label>
-        <input id="port" placeholder="e.g. 80" disabled />
+  <label for="timeout">Timeout (ms)</label>
+  <input id="timeout" placeholder="e.g. 1000" disabled />
 
-        <label for="timeout">Timeout (ms)</label>
-        <input id="timeout" placeholder="e.g. 1000" disabled />
+  <label for="packets">Packets Count</label>
+  <input id="packets" placeholder="e.g. 4" disabled />
+</div>
 
-        <label for="packets">Packets Count</label>
-        <input id="packets" placeholder="e.g. 4" disabled />
-      </div>
-    </div>
 
     <!-- Action buttons -->
     <div class="actions">
