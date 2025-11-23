@@ -1,5 +1,173 @@
 
-<html>
-  <head><title>Fluxaryx</title></head>
-  <body><h1>Fluxaryx - The network flow intelligence and diagnostics</h1></body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fluxaryx Network Tester — Mock UI</title>
+  <style>
+    :root {
+      --bg: #f6f8fa;
+      --panel: #ffffff;
+      --border: #d0d7de;
+      --text: #24292f;
+      --muted: #6e7781;
+      --accent: #0969da;
+      --success: LimeGreen;
+      --error: IndianRed;
+      --progress: #2ea043; /* matches XAML */
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      background: var(--bg); color: var(--text); margin: 0;
+    }
+    .container { max-width: 900px; margin: 24px auto; padding: 0 16px; }
+
+    /* Bottom StatusBar */
+    .statusbar {
+      position: fixed; left: 0; right: 0; bottom: 0;
+      border-top: 1px solid var(--border); background: var(--panel);
+      padding: 8px 16px; display: flex; justify-content: space-between; font-size: 14px;
+    }
+
+    /* Group boxes */
+    .group { border: 1px solid var(--border); border-radius: 8px; background: var(--panel); margin-bottom: 12px; }
+    .group > h2 { font-size: 14px; color: var(--muted); margin: 0; padding: 8px 12px; border-bottom: 1px solid var(--border); letter-spacing: 0.2px; }
+
+    /* Form grid (mimics WPF Grid with 3 columns) */
+    .form { display: grid; grid-template-columns: 120px 1fr auto; gap: 8px 12px; padding: 12px; align-items: start; }
+    label { font-weight: 600; align-self: center; }
+    textarea { min-height: 80px; resize: vertical; }
+    input, textarea, select { border: 1px solid var(--border); border-radius: 6px; padding: 8px; width: 100%; background: #fff; }
+    .logo { height: 54px; justify-self: end; align-self: start; }
+
+    /* Action buttons */
+    .actions { display: flex; gap: 8px; padding: 4px; }
+    button { border: 1px solid var(--border); border-radius: 6px; background: #fff; padding: 8px 12px; font-weight: 600; color: var(--text); cursor: not-allowed; }
+    button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* Result area */
+    .result { padding: 0; }
+    .progress { height: 6px; background: var(--bg); }
+    .progress > div { height: 6px; width: 60%; background: var(--progress); }
+
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 8px; border-top: 1px solid var(--border); text-align: left; }
+    th { background: #f0f2f4; font-size: 13px; }
+    td.num { text-align: right; }
+    .status.ok { color: var(--success); font-weight: 700; text-align: center; }
+    .status.fail { color: var(--error); font-weight: 700; text-align: center; }
+
+    .footer { text-align: right; color: var(--muted); font-size: 13px; padding: 8px 4px; }
+
+    @media (max-width: 720px) {
+      .form { grid-template-columns: 1fr; }
+      .logo { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Connection Details -->
+    <div class="group">
+      <h2>Connection Details</h2>
+      <div class="form">
+        <label for="targets">IP/Host</label>
+        <textarea id="targets" placeholder="e.g. 192.168.1.1
+10.0.0.5–25
+10.0.0.0/29
+example.com
+https://example.com:8443" disabled></textarea>
+
+        <!-- Logo (replace with your file name or remove if not needed) -->
+        logoLong.png
+
+        <label for="protocol">Protocol</label>
+        <select id="protocol" disabled>
+          <optgroup label="Basic">
+            <option>TCP</option>
+            <option>HTTP</option>
+            <option>HTTPS</option>
+            <option>ICMP (Ping)</option>
+            <option>UDP</option>
+          </optgroup>
+          <optgroup label="Services">
+            <option>SSH</option>
+            <option>SFTP</option>
+            <option>RDP</option>
+            <option>FTP</option>
+            <option>SQL</option>
+          </optgroup>
+        </select>
+
+        <label for="port">Port</label>
+        <input id="port" placeholder="e.g. 80" disabled />
+
+        <label for="timeout">Timeout (ms)</label>
+        <input id="timeout" placeholder="e.g. 1000" disabled />
+
+        <label for="packets">Packets Count</label>
+        <input id="packets" placeholder="e.g. 4" disabled />
+      </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="actions">
+      <button class="primary">Run</button>
+      <button>Clear Output</button>
+      <button>Copy Result</button>
+    </div>
+
+    <!-- Result -->
+    <div class="group">
+      <h2>Result</h2>
+      <div class="result">
+        <!-- Thin progress bar -->
+        <div class="progress"><div></div></div>
+
+        <table aria-label="Results">
+          <thead>
+            <tr>
+              <th style="width:60px;">Status</th>
+              <th style="width:180px;">Target</th>
+              <th style="width:100px;">Latency (ms)</th>
+              <th>Message</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="status ok">✔</td>
+              <td>example.com</td>
+              <td class="num">42</td>
+              <td>Connection established</td>
+            </tr>
+            <tr>
+              <td class="status fail">✖</td>
+              <td>10.0.0.15</td>
+              <td class="num">—</td>
+              <td>Timeout reached</td>
+            </tr>
+            <tr>
+              <td class="status ok">✔</td>
+              <td>192.168.1.1</td>
+              <td class="num">5</td>
+              <td>Ping successful</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">© 2025 Fluxaryx — Mock UI</div>
+  </div>
+
+  <!-- Bottom status bar -->
+  <div class="statusbar" role="status">
+    <div id="status-text">Ready</div>
+    <div>&nbsp;</div>
+  </div>
+</body>
 </html>
