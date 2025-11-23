@@ -35,7 +35,7 @@
     .group { border: 1px solid var(--border); border-radius: 8px; background: var(--panel); margin-bottom: 12px; }
     .group > h2 { font-size: 14px; color: var(--muted); margin: 0; padding: 8px 12px; border-bottom: 1px solid var(--border); letter-spacing: 0.2px; }
 
-    /* Form grid: 3 columns (label | field | optional logo) */
+    /* Form grid: 3 columns (label | field | logo) */
     .form {
       display: grid;
       grid-template-columns: 120px 1fr auto;
@@ -43,13 +43,10 @@
       padding: 12px;
       align-items: start;
     }
-    /* Force placement: labels always in col 1, fields in col 2 */
     .form > label { grid-column: 1; font-weight: 600; align-self: center; }
     .form > input,
     .form > textarea,
     .form > select { grid-column: 2; border: 1px solid var(--border); border-radius: 6px; padding: 8px; width: 100%; background: #fff; }
-
-    /* Logo pinned to column 3, first row */
     .logo {
       grid-column: 3;
       grid-row: 1;
@@ -57,7 +54,6 @@
       justify-self: end;
       align-self: start;
     }
-
     textarea { min-height: 80px; resize: vertical; }
 
     /* Action buttons */
@@ -103,7 +99,7 @@
 example.com
 https://example.com:8443" disabled></textarea>
 
-        <!-- Logo (replace src with your file path or remove entirely) -->
+        <!-- Logo -->
         logoLong.png
 
         <label for="protocol">Protocol</label>
@@ -146,9 +142,7 @@ https://example.com:8443" disabled></textarea>
     <div class="group">
       <h2>Result</h2>
       <div class="result">
-        <!-- Thin progress bar -->
         <div class="progress"><div></div></div>
-
         <table aria-label="Results">
           <thead>
             <tr>
